@@ -1,0 +1,9 @@
+{
+  "name": "Garage Inventory",
+  "short_name": "Garage",
+  "start_url": "./#/?kiosk=1",
+  "display": "standalone",
+  "background_color": "#0f1216",
+  "theme_color": "#0f1216",
+  "icons": [{ "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
