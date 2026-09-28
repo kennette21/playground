@@ -11,7 +11,7 @@ export interface AppSettings {
 const KEY = 'garage-inventory:settings'
 
 export const defaultSettings = (): AppSettings => ({
-  qrBaseUrl: typeof window !== 'undefined' ? window.location.origin : '',
+  qrBaseUrl: typeof window !== 'undefined' ? window.location.origin + window.location.pathname.replace(/index\.html$/, '').replace(/\/$/, '') : '',
   labelWidthMm: 50,
   labelHeightMm: 25,
   speechLang: 'en-US',
