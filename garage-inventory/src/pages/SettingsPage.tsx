@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createRepo, loadBackendConfig, saveBackendConfig, SupabaseRepo } from '../repo'
+import { huskySnapshot } from '../lib/husky'
 import { sampleSnapshot } from '../lib/sample'
 import { loadSettings, saveSettings } from '../lib/settings'
 import { getRepo, init, replaceAll, useStore } from '../store'
@@ -104,6 +105,16 @@ export function SettingsPage() {
           {locations.length} locations, {items.length} items.
         </p>
         <div className="row">
+          <button
+            className="primary"
+            onClick={async () => {
+              if (items.length + locations.length > 0 && !confirm('Replace your current data with the Husky chest from the photos?')) return
+              await replaceAll(huskySnapshot())
+              setMsg('Husky chest loaded: 17 locations, 22 items.')
+            }}
+          >
+            Load my Husky chest (from photos)
+          </button>
           <button
             onClick={async () => {
               if (items.length + locations.length > 0 && !confirm('Replace your current data with the sample garage?')) return

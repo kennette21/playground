@@ -4,7 +4,8 @@ import { pathLabel } from '../lib/codes'
 import { buildIndex, cleanVoiceQuery, type SearchDoc } from '../lib/search'
 import { loadSettings } from '../lib/settings'
 import { listen, speak, speechSupported, type Listener } from '../lib/speech'
-import { useStore } from '../store'
+import { replaceAll, useStore } from '../store'
+import { huskySnapshot } from '../lib/husky'
 
 export function SearchPage() {
   const { items, locations } = useStore()
@@ -99,11 +100,14 @@ export function SearchPage() {
         <div className="card" style={{ marginTop: '1rem' }}>
           <h2>Welcome to your garage inventory</h2>
           <p>Nothing here yet. Start by adding your tool chests and drawers under <Link to="/locations">Locations</Link>, or load a demo garage to see how it works.</p>
-          <p>
-            <Link to="/settings" className="btn primary">
-              Load sample garage
+          <div className="row">
+            <button className="primary big" onClick={() => replaceAll(huskySnapshot())}>
+              Load my Husky chest
+            </button>
+            <Link to="/settings" className="btn">
+              More options
             </Link>
-          </p>
+          </div>
         </div>
       )}
 
